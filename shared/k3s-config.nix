@@ -1,7 +1,7 @@
 { pkgs, role, clusterName ? null, labels ? [], ... }:
 
 let
-  clusterAddresses = import ../clusters.nix;
+  clusterAddresses = import ./clusters.nix;
   serverAddr = if clusterName != null then clusterAddresses.${clusterName} else "";
 
   labelFlags = map (label: "--node-label=${label}") labels;
