@@ -34,12 +34,12 @@
 
     nixosConfigurations = {
       # Node configurations using the mkNode helper function
-      kube-node-1 = self.mkNode4 ./nodes/kube-node-1.nix;
-      kube-node-2 = self.mkNode4 ./nodes/kube-node-2.nix;
-      kube-node-3 = self.mkNode4 ./nodes/kube-node-3.nix;
-      kube-node-4 = self.mkNode4 ./nodes/kube-node-4.nix;
-      kube-node-5 = self.mkNode5 ./nodes/kube-node-5.nix;
-      kube-node-6 = self.mkNode5 ./nodes/kube-node-6.nix;
+      management-prod = self.mkNode5 ./nodes/management-prod.nix;
+      dev = self.mkNode5 ./nodes/dev.nix;
+      dev-worker-1 = self.mkNode4 ./nodes/dev-worker-1.nix;
+      dev-worker-2 = self.mkNode4 ./nodes/dev-worker-2.nix;
+      prod = self.mkNode5 ./nodes/prod.nix;
+      prod-worker-1 = self.mkNode4 ./nodes/prod-worker-1.nix;
     };
   };
 }

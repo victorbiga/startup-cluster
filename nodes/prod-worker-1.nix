@@ -4,6 +4,8 @@ let
   k3sConfig = import ../shared/k3s-config.nix {
     inherit pkgs;
     role = "agent";
+    clusterName = "prod";
+    labels = [ "env=prod" "hardware=pi4" ];
   };
 in
 {
@@ -12,9 +14,9 @@ in
   config = {
 
     networking = {
-      hostName = "kube-node-6";
+      hostName = "prod-worker-1";
       interfaces.end0.ipv4.addresses = [{
-        address = "10.0.0.26";
+        address = "10.0.0.36";
         prefixLength = 24;
       }];
     };

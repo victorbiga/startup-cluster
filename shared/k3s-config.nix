@@ -1,13 +1,19 @@
-{ pkgs, role, ... }:
+{ pkgs, role, clusterName ? null, ... }:
+
+let
+  clusterAddresses = import ../clusters.nix;
+  serverAddr = if clusterName != null then clusterAddresses.${clusterName} else "";
+
+  labelFlags = map (label: "--node-label=${label}") labels;
+
+in
 
 {
   services.k3s = {
     role = role;
 
-    # Hardcoded server address for agents
-    serverAddr = if role == "agent" then "https://10.0.0.21:6443" else "";
+    serverAddr = if role == "agent" then serverAddr else "";
 
-    # Include additional flags conditionally based on the role
-    extraFlags = if role == "server" then [ "--disable=traefik" ] else [];
+    extraFlags = (if role == "server" then [ "--disable=traefik" ] else []) ++ labelFlags;
   };
 }

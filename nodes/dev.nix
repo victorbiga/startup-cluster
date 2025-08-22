@@ -1,19 +1,22 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   k3sConfig = import ../shared/k3s-config.nix {
     inherit pkgs;
-    role = "agent";  # Set the role for kube-node-3
+    role = "server";
+    clusterName = "dev";
+    labels = [ "env=dev" "hardware=pi5" ];
   };
 in
 {
-  imports = [ k3sConfig ];  # Import the K3s config for the agent
+  imports = [ k3sConfig ];
 
   config = {
+
     networking = {
-      hostName = "kube-node-3";
+      hostName = "dev";
       interfaces.end0.ipv4.addresses = [{
-        address = "10.0.0.23";
+        address = "10.0.0.32";
         prefixLength = 24;
       }];
     };
