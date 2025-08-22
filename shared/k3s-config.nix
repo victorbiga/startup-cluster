@@ -1,4 +1,4 @@
-{ pkgs, role, clusterName ? null, ... }:
+{ pkgs, role, clusterName ? null, labels ? [], ... }:
 
 let
   clusterAddresses = import ../clusters.nix;
