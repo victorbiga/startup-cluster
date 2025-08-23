@@ -21,7 +21,7 @@ in
 
     extraFlags =
       (if role == "server" then [ "--disable=traefik" ] else []) ++
-      labelFlags ++;
+      labelFlags;
 
   } // tokenConfig;
 }
