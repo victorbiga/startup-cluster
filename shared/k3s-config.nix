@@ -16,6 +16,6 @@ in
     serverAddr = if role == "agent" then serverAddr else "";
     clusterInit = if role == "server" then clusterInit else false;
 
-    extraFlags = (if role == "server" then [ "--disable=traefik" ] else []) ++ labelFlags;
+    extraFlags = (if role == "server" then [ "--disable=traefik" ] else []) ++ labelFlags ++ [ "--no-prefer-bundled-bin" ];
   };
 }
