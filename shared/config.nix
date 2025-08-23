@@ -37,10 +37,6 @@
       name = "${config.networking.hostName}";
     };
     rpcbind.enable = true;
-    k3s = {
-      enable = true;
-      tokenFile = "/etc/k3s/token";
-    };
   };
 
   # Security
