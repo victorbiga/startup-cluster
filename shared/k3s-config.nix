@@ -7,6 +7,9 @@ let
   labelFlags = map (label: "--node-label=${label}") labels;
 
   tokenConfig = if role == "agent" then { tokenFile = "/etc/k3s/token"; } else { };
+  tokenFile = if role == "agent" then {
+    environment.etc."k3s/token".text = "";
+  } else { };
 
 in
 
@@ -24,4 +27,4 @@ in
       labelFlags;
 
   } // tokenConfig;
-}
+} // tokenFile
