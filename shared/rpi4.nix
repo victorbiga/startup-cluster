@@ -1,20 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
-  fileSystems = {
-    # The root filesystem, labeled NIXOS_SD.
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-    };
-    # The boot filesystem, labeled FIRMWARE.
-    "/boot" = {
-      device = "/dev/disk/by-label/FIRMWARE";
-      fsType = "vfat";
-    };
-  };
-
   # Boot settings
   boot = {
     loader = {
