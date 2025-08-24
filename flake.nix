@@ -12,12 +12,14 @@
     mkNode4 = nodeConfig: nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";  # Architecture defined once
       modules = [
+        raspberry-pi-nix.nixosModules.raspberry-pi # Add this line
+        raspberry-pi-nix.nixosModules.sd-image # Add this line
+        nixos-hardware.nixosModules.raspberry-pi-4 # Keep this
         "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-        nixos-hardware.nixosModules.raspberry-pi-4
         "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-        ./shared/config.nix  # Common configurations for all nodes
-        ./shared/rpi4.nix  # Common configurations for all nodes
-        nodeConfig  # Specific node configuration
+        ./shared/config.nix
+        ./shared/rpi4.nix
+        nodeConfig
       ];
     };
     mkNode5 = nodeConfig: nixpkgs.lib.nixosSystem {
