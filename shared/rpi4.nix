@@ -5,7 +5,7 @@
   boot = {
     loader = {
       grub.enable = false;
-      generic-extlinux-compatible.enable = true; # Enables the generation of /boot/extlinux/extlinux.conf
+      generic-extlinux-compatible.enable = true;
     };
     kernelPackages = pkgs.linuxPackages_rpi4;
     initrd = {
@@ -19,5 +19,6 @@
       "cgroup_enable=memory"
     ];
     kernelModules = [ "rbd" ];
+    nixStoreMountOpts = [ "ro" ];
   };
 }
